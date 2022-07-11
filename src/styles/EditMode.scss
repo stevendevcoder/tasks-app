@@ -1,0 +1,53 @@
+.edit__mode {
+  margin-top: 15px;
+  border-radius: 12px;
+  font-size: 18px;
+  background-color: #131313fa;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  height: fit-content;
+  padding: 10px;
+  input {
+    width: 90%;
+    border: none;
+    padding: 10px 15px;
+    background-color: rgba(48, 48, 48, 0.137);
+    outline: none;
+    font-size: 18px;
+    color: #fff;
+  }
+  input[name='description'] {
+    padding: 25px 15px;
+    font-size: 15px;
+  }
+
+  .options {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+
+    button {
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 500;
+      padding: 10px 15px;
+      color: #fff;
+      outline: none;
+      border: none;
+      border-radius: 12px;
+    }
+
+    .btn-cancel {
+      background-color: rgb(161, 20, 20);
+      
+    }
+
+    .btn-add {
+      background-color: darkgreen;
+
+    }    
+  }
+}
