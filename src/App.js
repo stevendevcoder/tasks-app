@@ -4,17 +4,14 @@ import TasksList from './components/TasksList';
 import TaskElement from './components/TaskElement';
 import AddTasks from './components/AddTasks';
 import { Vanta } from './components/Vanta';
-
 import { GrAdd } from 'react-icons/gr'
+import { getTasksLS, updateTasksLS } from './LocalStorage/LocalStorage';
 
 import './styles/App.scss';
 
 function App() {
   /* Estados */
-  const [tasks, setTasks] = useState([
-    {id: 1,name: 'hacer almuerzo', description: 'esta es la descripcion', done: false},
-    {id: 2,name: 'programar por mucho tiempo', description: 'loalsae', done: true}
-  ]);
+  const [tasks, setTasks] = useState(getTasksLS());
   const [filteredTasks, setFilteredTasks] = useState(tasks); 
   const [term, setTerm] = useState('');
   const [editMode ,setEditMode] = useState(false);
@@ -29,12 +26,14 @@ function App() {
 
   const addNewTask = (name, description) => {
     const newTask = {
-      id: tasks.length > 0 ? tasks.length : 1,
+      id: tasks.length > 0 ? tasks.length + 1 : 1,
       name: name, 
       description: description,
       done: false
     };
-    setTasks([...tasks, newTask]);
+    const newArray = [...tasks, newTask];
+    setTasks(newArray);
+    updateTasksLS(newArray);
   }
 
   const updateTask = (id, property, value) => {
@@ -48,8 +47,15 @@ function App() {
       return task
     })
     setTasks(updatedTasks);
+    updateTasksLS(updatedTasks);
   };
-  
+
+  const removeTask = (id) => {
+    const filtered = tasks.filter(task => task.id !== id);
+    setTasks(filtered);
+    updateTasksLS(filtered);
+  }
+
   return (
     <div ref={Vanta()} className="App">
       <h1>TasksApp</h1>
@@ -79,6 +85,7 @@ function App() {
               <TaskElement 
                 key={task.id} 
                 updateTask={updateTask}
+                removeTask={removeTask}
                 {...task}
               />
             ) :
@@ -86,6 +93,7 @@ function App() {
               <TaskElement 
                 key={task.id} 
                 updateTask={updateTask}
+                removeTask={removeTask}
                 {...task}
               />
             )  

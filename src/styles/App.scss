@@ -104,7 +104,7 @@
       font-size: 18px;
       background-color: #131313fa;
       display: flex;
-      justify-content: flex-start;
+      justify-content: space-between;
       align-items: center;
       gap: 10px;
       height: 35px;
@@ -120,7 +120,35 @@
       .checked{
         text-decoration: line-through;
       }
+      .options {
+        cursor: pointer;
+        display: flex;
+        gap: 10px;
+        font-size: 25px;
+        .btn-edit {
+          color: rgb(165, 139, 26);
+          &:hover {
+            color: rgb(211, 187, 81);
+            //animation: palpitar .5s infinite;
+          }
+        }
+        .btn-delete {
+          color: rgb(158, 9, 9);
+          &:hover {
+            color: rgb(235, 67, 67);
+            //animation: palpitar .5s infinite;
+          }
+        }
+      }
     }
   }
 }
 
+@keyframes palpitar {
+  0% {
+    transform: scale(1.1);
+  }   
+  100% {
+    transform: scale(1.2);
+  }
+}
