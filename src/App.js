@@ -14,6 +14,7 @@ function App() {
   const [tasks, setTasks] = useState(getTasksLS());
   const [filteredTasks, setFilteredTasks] = useState(tasks); 
   const [term, setTerm] = useState('');
+  var doneTasks = tasks.filter(task => task.done).length;
   const [editMode ,setEditMode] = useState(false);
 
   /* Funciones */ 
@@ -36,16 +37,10 @@ function App() {
     updateTasksLS(newArray);
   }
 
-  const updateTask = (id, property, value) => {
-    const updatedTasks = tasks.map(task => {
-      if(task.id === id){
-        return {
-          ...task,
-          done: value
-        }
-      }
-      return task
-    })
+  const updateTask = (newTask) => {
+    const updatedTasks = tasks.map(task => 
+      (task.id === newTask.id) ? newTask : task
+    )
     setTasks(updatedTasks);
     updateTasksLS(updatedTasks);
   };
@@ -58,7 +53,8 @@ function App() {
 
   return (
     <div ref={Vanta()} className="App">
-      <h1>TasksApp</h1>
+      <h1>Tasks App</h1>
+      
       <div className="tasks__container">
         <div className='options__container'>
           <div onClick={()=>setEditMode(true)} className='add__tasks'>
@@ -79,27 +75,35 @@ function App() {
           />
         }
 
-        <TasksList>
-          {term.length > 0 ? 
-            filteredTasks.map(task => 
-              <TaskElement 
-                key={task.id} 
-                updateTask={updateTask}
-                removeTask={removeTask}
-                {...task}
-              />
-            ) :
-            tasks.map(task => 
-              <TaskElement 
-                key={task.id} 
-                updateTask={updateTask}
-                removeTask={removeTask}
-                {...task}
-              />
-            )  
-          }
-        </TasksList>
+        {tasks.length === 0 ? 
+          <h3>Añedeme tareas :)</h3> 
+          :
+          <TasksList>
+            {term.length > 0 ? 
+              filteredTasks.map(task => 
+                <TaskElement 
+                  key={task.id} 
+                  updateTask={updateTask}
+                  removeTask={removeTask}
+                  task={task}
+                />
+              ) :
+              tasks.map(task => 
+                <TaskElement 
+                  key={task.id} 
+                  updateTask={updateTask}
+                  removeTask={removeTask}
+                  task={task}
+                />
+              )  
+            }
+          </TasksList>
+        }
       </div>
+      <div className="counter__tasks">
+        <p>Haz completado {doneTasks} de {tasks.length}</p>
+      </div>
+      
     </div>
   );
 }

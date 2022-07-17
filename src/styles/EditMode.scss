@@ -39,15 +39,17 @@
       border: none;
       border-radius: 12px;
     }
-
     .btn-cancel {
       background-color: rgb(161, 20, 20);
-      
     }
-
     .btn-add {
       background-color: darkgreen;
-
-    }    
+    } 
+    .btn-edit {
+      background-color: rgb(165, 139, 26);
+       &:hover {
+         background-color: rgb(211, 187, 81);
+        }
+    }   
   }
 }

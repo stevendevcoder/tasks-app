@@ -18,8 +18,8 @@ function AddTasks({setEditMode, addNewTask}) {
     setEditMode(false);
   }
 
-  return (
-    <form method='get' onSubmit={enviar} className='edit__mode'>
+  return ( 
+    <form onSubmit={enviar} className='edit__mode'>
       <input 
         type="text" 
         name='name'

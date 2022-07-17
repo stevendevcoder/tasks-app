@@ -1,16 +1,27 @@
 import React, { useState } from 'react';
+import EditTask from './EditTask';
+
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai'
 
 function TaskElement({
-  id,
-  name, 
-  description, 
-  done,
+  task,
   updateTask,
   removeTask
 }){
+  const {id, name, description, done} = task;
+  const [editMode, setEditMode] = useState(false);
   const handleChange = () => {
-    updateTask(id, 'done', !done);
+    updateTask({...task, done: !done});
+  }
+
+  if(editMode) {
+    return (
+      <EditTask 
+        setEditMode={setEditMode} 
+        updateTask={updateTask} 
+        task={task}
+      />
+    )
   }
 
   return (
@@ -25,7 +36,7 @@ function TaskElement({
       <p className={done ? 'checked' : ''}>{name}</p>
       <div className='options'>
         <AiFillEdit 
-          //onClick={}
+          onClick={()=>setEditMode(true)}
           className='btn-edit'
         />
         <AiFillDelete 

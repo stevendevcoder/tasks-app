@@ -13,6 +13,19 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color: rgb(23, 9, 73);
+    font-weight: 300;
+  }
+
+  .counter__tasks {
+    p {
+      font-weight: 300;
+      font-size: 18px;
+      color: #fff;
+    }
+    padding: 0px 10px;
+    border-radius: 12px;
+    justify-self: end;
+    background-color: #030a14a6;
   }
 
   .tasks__container {
@@ -22,6 +35,15 @@
     border-radius: 20px;
     //border: .5px solid #fff;
     padding: 20px;
+  }
+  h3 {
+    color: #fff;
+    font-weight: 350;
+    width: fit-content;
+    background-color: #030a14c9;
+    border-radius: 12px;
+    padding: 10px;
+    margin: 50px auto;
   }
 
   .options__container {
