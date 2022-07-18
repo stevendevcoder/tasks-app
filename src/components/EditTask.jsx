@@ -1,0 +1,49 @@
+import React, { useState } from 'react'
+import '../styles/EditMode.scss';
+import { AiFillEdit } from 'react-icons/ai'
+
+function EditTask({setEditMode, updateTask, task}) {
+  const [editTask, setEditTask] = useState(task);
+
+  const handleChange = (e) => {
+    setEditTask({...editTask, [e.target.name]: e.target.value})
+  }
+
+  const enviar = (e) => {
+    e.preventDefault();
+
+    updateTask(editTask);
+    setEditMode(false);
+  }
+
+  return (
+    <form onSubmit={enviar} className='edit__mode'>
+      <input 
+        type="text" 
+        value={editTask.name}
+        name="name"
+        onChange={handleChange}  
+        placeholder='nombre de la tarea...'
+      />
+      <input 
+        type="text" 
+        value={editTask.description}
+        name="description"
+        onChange={handleChange}
+        placeholder='descripcion...'
+      />
+      <div className="options">
+        <button 
+          type="submit"
+          className='btn-edit'
+          onClick={enviar}
+        >
+          <AiFillEdit/>
+          Editar
+        </button>
+      </div>
+    </form>
+  )
+}
+
+export default EditTask
