@@ -9,6 +9,12 @@ import { getTasksLS, updateTasksLS } from './LocalStorage/LocalStorage';
 
 import './styles/App.scss';
 
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+AOS.init({
+  duration: 700
+});
+
 function App() {
   /* Estados */
   const [tasks, setTasks] = useState(getTasksLS());
@@ -16,7 +22,6 @@ function App() {
   const [term, setTerm] = useState('');
   var doneTasks = tasks.filter(task => task.done).length;
   const [editMode ,setEditMode] = useState(false);
-
   /* Funciones */ 
   const filterTasks = () => {
     const filtered = tasks.filter(task => 
@@ -27,10 +32,11 @@ function App() {
 
   const addNewTask = (name, description) => {
     const newTask = {
-      id: tasks.length > 0 ? tasks.length + 1 : 1,
+      id: tasks.length,
       name: name, 
       description: description,
-      done: false
+      done: false,
+      lastUpdate: new Date()
     };
     const newArray = [...tasks, newTask];
     setTasks(newArray);
@@ -53,10 +59,10 @@ function App() {
 
   return (
     <div ref={Vanta()} className="App">
-      <h1>Tasks App</h1>
+      <h1 data-aos="fade-in">Tasks App</h1>
       
       <div className="tasks__container">
-        <div className='options__container'>
+        <div className='options__container' data-aos="flip-left">
           <div onClick={()=>setEditMode(true)} className='add__tasks'>
             <p>Añadir tarea</p>
             <GrAdd className='btn-add'></GrAdd>
@@ -65,20 +71,22 @@ function App() {
             term={term}
             setTerm={setTerm}
             filterTasks={filterTasks}
+            data-aos="fade-in"
           />
         </div>
 
         {editMode && 
           <AddTasks 
             setEditMode={setEditMode} 
-            addNewTask={addNewTask} 
+            addNewTask={addNewTask}
+            data-aos="fade-in" 
           />
         }
 
         {tasks.length === 0 ? 
           <h3>Añedeme tareas :)</h3> 
           :
-          <TasksList>
+          <TasksList data-aos="fade-in">
             {term.length > 0 ? 
               filteredTasks.map(task => 
                 <TaskElement 
@@ -100,9 +108,10 @@ function App() {
           </TasksList>
         }
       </div>
-      <div className="counter__tasks">
+      {/*
+      <div className="counter__tasks" data-aos="fade-in">
         <p>Haz completado {doneTasks} de {tasks.length}</p>
-      </div>
+      </div>*/}
       
     </div>
   );

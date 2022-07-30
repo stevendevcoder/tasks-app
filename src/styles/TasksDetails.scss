@@ -1,0 +1,54 @@
+.task__details {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    height: fit-content;
+    margin-bottom: 15px;
+    
+    border-radius: 12px;
+    font-size: 18px;
+    background-color: #131313fa;
+    padding: 20px 25px;
+    color: #fff;
+    transition: background-color .5s;
+    label {
+      text-align: left;
+      font-size: 15px;
+      font-weight: 250;
+      text-decoration: underline;
+      color: rgb(185, 185, 185);
+    }
+    .information {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      letter-spacing: 1px;
+      font-weight: 350;
+
+      .name {
+        text-align: left;
+        word-wrap: break-word;
+      }
+      .description {
+        text-align: left;
+        background-color: #24242456;
+        padding: 20px;
+        font-size: 200;
+        height: fit-content;
+        word-wrap: break-word;
+      }
+    }
+    .close-details {
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      padding: 5px;
+      font-size: 25px;
+      color: #131313fa;
+      background-color: #FFF;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+}

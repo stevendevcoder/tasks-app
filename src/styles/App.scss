@@ -5,15 +5,17 @@
   align-items: center;
   background-color: #030a14;
   min-height: 100vh;
+  height: fit-content;
   font-size: calc(10px + 2vmin);
   color: white;
+  overflow-x: hidden;
 
   h1 {
     background: -webkit-linear-gradient(rgb(24, 23, 90),rgb(194, 26, 26));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color: rgb(23, 9, 73);
-    font-weight: 300;
+    font-weight: 500;
   }
 
   .counter__tasks {
@@ -28,14 +30,6 @@
     background-color: #030a14a6;
   }
 
-  .tasks__container {
-    width: 500px;
-    height: 400px;
-    //background-color: rgba(12, 12, 12, 0.815);
-    border-radius: 20px;
-    //border: .5px solid #fff;
-    padding: 20px;
-  }
   h3 {
     color: #fff;
     font-weight: 350;
@@ -51,18 +45,18 @@
     align-items: center;
     gap: 15px;
     .add__tasks {
-      cursor: pointer;
-      width: max-content;
-      background: rgb(24,23,90);
-      background: linear-gradient(90deg, rgba(24,23,90,1) 0%, rgba(194,26,26,1) 100%);
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 15px;
       gap: 10px;
-      width: 100%;
       font-size: 18px;
       padding: 0px 25px;
+      background: rgb(24,23,90);
+      background: linear-gradient(90deg, rgba(24,23,90,1) 0%, rgba(194,26,26,1) 100%);
+      cursor: pointer;
+      
       .btn-add {
         color: #fff;
         font-size: 25px;
@@ -114,24 +108,32 @@
   }
   .tasks__list {
     padding: 20px 0px;
-    width: 500px;
+    width: 100%;
     height: fit-content;
-    min-height: 400px;
     display: flex;
     flex-direction: column;
     gap: 10px;
     
     .task__element {
+      width: auto;
+      height: 35px;
       border-radius: 12px;
-      font-size: 18px;
-      background-color: #131313fa;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
-      height: 35px;
       padding: 10px;
+      gap: 10px;
+
+      font-size: 18px;
+      background-color: #131313fa;
       color: #fff;
+      transition: background-color .5s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #242424fa;
+        transition: background-color .3s;
+      }
 
       #done {
         width: 30px;
@@ -142,7 +144,17 @@
       .checked{
         text-decoration: line-through;
       }
+      .information {
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        letter-spacing: 1px;
+        font-weight: 350;
+      }
       .options {
+        z-index: 2;
         cursor: pointer;
         display: flex;
         gap: 10px;
@@ -161,6 +173,29 @@
             //animation: palpitar .5s infinite;
           }
         }
+      }
+      @media (max-width: 600px){
+        #done {
+          width: 20px;
+          height: 20px;
+        }
+        p {
+          width: min-content;
+          font-size: 15px;
+        }
+        .options {
+          font-size: 22px;
+          gap: 6px;
+        }
+      }
+      @media (max-width: 501px){
+        width: 450px;
+      }
+      @media (max-width: 450px){
+        width: 400px
+      }
+      @media (max-width: 350px){
+        width: 350px
       }
     }
   }

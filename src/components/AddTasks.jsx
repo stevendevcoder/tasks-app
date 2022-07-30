@@ -11,21 +11,31 @@ function AddTasks({setEditMode, addNewTask}) {
     setNewTask({...newTask, [e.target.name]: e.target.value})
   }
 
+  const handleKeyEnter = (e) => {
+    if(e.key === 'Enter'){
+      enviar();
+    }
+  } 
+
   const enviar = (e) => {
     //Cerrar el edit/add mode
-    e.preventDefault();
-    addNewTask(newTask.name, newTask.description)
-    setEditMode(false);
+    e && e.preventDefault();
+    if(newTask.name.length > 0) {
+      addNewTask(newTask.name, newTask.description)
+      setEditMode(false);
+    }
   }
 
   return ( 
-    <form onSubmit={enviar} className='edit__mode'>
+    <form onSubmit={enviar} className='edit__mode' onKeyPress={handleKeyEnter}>
       <input 
         type="text" 
         name='name'
         value={newTask.name}
         onChange={handleChange}
         placeholder='Write the task name right here'
+        required
+        autoFocus
         />
       <input 
         type="text" 

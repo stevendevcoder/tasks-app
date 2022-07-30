@@ -18,10 +18,14 @@
     outline: none;
     font-size: 18px;
     color: #fff;
+    word-wrap: break-word;
+    height: fit-content;
   }
   input[name='description'] {
     padding: 25px 15px;
     font-size: 15px;
+    word-wrap: break-word;
+    height: fit-content;
   }
 
   .options {
